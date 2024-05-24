@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("dev");
 
-//builder.Services.AddTransient<ConnectionDB>();
+builder.Services.AddTransient<ConnectionDB>();
 
 var app = builder.Build();
 
