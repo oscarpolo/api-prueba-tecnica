@@ -8,10 +8,12 @@ namespace ApiPruebaTecnica.Model
     public class CyclingStoreModel
     {
         private readonly SqlConnection sqlConnection;
+        private readonly ConnectionDB _connectionDB;
 
-        public CyclingStoreModel()
+        public CyclingStoreModel(ConnectionDB connectionDB)
         {
-            sqlConnection = ConnectionDB.NewConnection();
+            _connectionDB = connectionDB;
+            sqlConnection = _connectionDB.NewConnection();
         }
 
         public IEnumerable<ProductsDTO> ProductsByNameModel(ProductByNameDto name)

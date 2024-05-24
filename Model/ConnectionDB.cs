@@ -1,12 +1,20 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace ApiPruebaTecnica.Model
 {
     public class ConnectionDB
     {
-        public static SqlConnection NewConnection()
+        private readonly string _connectionString;
+
+        public ConnectionDB(IConfiguration configuration)
         {
-            return new SqlConnection("Data Source = DESKTOP; Initial Catalog = ALGARTECH_PRUEBATECNICA; Integrated Security = True;");
+            _connectionString = configuration.GetConnectionString("dev");
+        }
+
+        public SqlConnection NewConnection()
+        {
+            return new SqlConnection(_connectionString);
         }
     }
 }
